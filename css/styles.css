@@ -516,3 +516,19 @@ html.edit-mode .is-editable:focus {
   hyphens: auto;
 }
 
+
+/* Contact modal */
+.cmodal{position:fixed;inset:0;z-index:1000;display:flex;align-items:center;justify-content:center;padding:1rem;background:rgba(15,15,15,.7)}
+.cmodal[hidden]{display:none}
+.cmodal-box{position:relative;width:min(100%,560px);max-height:calc(100vh - 2rem);overflow:auto;background:var(--white);border-top:6px solid var(--red);border-radius:10px;padding:2rem;box-shadow:0 20px 60px rgba(0,0,0,.35)}
+.cmodal-box h2{margin:0 0 .5rem}
+.cmodal-intro{color:var(--muted);margin:0 0 1.25rem}
+.cmodal-close{position:absolute;top:.6rem;right:.8rem;border:0;background:none;font-size:1.8rem;line-height:1;cursor:pointer;color:var(--black)}
+.cmodal form label{display:block;font-weight:500;margin-bottom:.9rem}
+.cmodal input,.cmodal textarea{display:block;width:100%;box-sizing:border-box;margin-top:.3rem;padding:.65rem .75rem;font:inherit;border:1px solid #ccc;border-radius:6px}
+.cmodal input:focus,.cmodal textarea:focus{outline:2px solid var(--red);border-color:var(--red)}
+.cmodal .req{color:var(--red)}
+.cmodal .invalid{border-color:var(--red);background:#fff5f5}
+.cf-hp{position:absolute;left:-9999px}
+.cf-error{color:var(--red);font-weight:500}
+body.cmodal-open{overflow:hidden}

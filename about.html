@@ -22,7 +22,7 @@
         <li><a aria-current="page" href="/about">About</a></li>
         <li><a href="/#contact">Contact</a></li>
       </ul>
-      <a class="btn btn-primary nav-cta" data-mailto="" href="mailto:jim@goptgs.com?subject=PTGS%20enquiry">Start a conversation</a>
+      <a class="btn btn-primary nav-cta" data-mailto="" data-contact-open="" href="mailto:jim@goptgs.com?subject=PTGS%20enquiry">Start a conversation</a>
     </div>
   </header>
 
@@ -59,7 +59,7 @@
         </div>
         <div class="link-row">
           <a class="ext" data-linkedin="" href="https://www.linkedin.com/in/jimbanister" target="_blank" rel="noopener noreferrer">LinkedIn — linkedin.com/in/jimbanister</a>
-          <a class="btn btn-primary" data-mailto="" href="mailto:jim@goptgs.com?subject=PTGS%20enquiry">Start a conversation</a>
+          <a class="btn btn-primary" data-mailto="" data-contact-open="" href="mailto:jim@goptgs.com?subject=PTGS%20enquiry">Start a conversation</a>
         </div>
       </div>
     </section>
@@ -228,6 +228,32 @@
         });
       &lt;/script&gt;
     &lt;/body&gt;&lt;/html&gt;" style="position: fixed; bottom: 0px; right: 0px; border: 0px; margin: 0px; padding: 0px; background: transparent; color-scheme: dark; z-index: 2147483645; width: 192px; height: 64px; clip-path: path(&quot;M 3 3 H 179 V 51 H 3 Z&quot;);" data-nl-ready="1"></iframe>
+
+  <div class="cmodal" id="contact-modal" hidden role="dialog" aria-modal="true" aria-labelledby="cmodal-title">
+    <div class="cmodal-box">
+      <button type="button" class="cmodal-close" data-contact-close aria-label="Close">&times;</button>
+      <div data-contact-formwrap>
+        <h2 id="cmodal-title">Start a conversation</h2>
+        <p class="cmodal-intro">Tell me a little about what you need. I&rsquo;ll reply personally, usually within one working day.</p>
+        <form name="contact" method="POST" action="/thanks.html" data-netlify="true" netlify-honeypot="bot-field" novalidate>
+          <input type="hidden" name="form-name" value="contact" />
+          <p class="cf-hp"><label>Leave this empty: <input name="bot-field" tabindex="-1" autocomplete="off" /></label></p>
+          <label>Name <span class="req">*</span><input type="text" name="name" required autocomplete="name" /></label>
+          <label>Company<input type="text" name="company" autocomplete="organization" /></label>
+          <label>Email <span class="req">*</span><input type="email" name="email" required autocomplete="email" /></label>
+          <label>Phone<input type="tel" name="phone" autocomplete="tel" /></label>
+          <label>Your challenge or need <span class="req">*</span><textarea name="description" rows="5" required></textarea></label>
+          <p class="cf-error" data-contact-error hidden></p>
+          <button type="submit" class="btn btn-primary">Send</button>
+        </form>
+      </div>
+      <div data-contact-done hidden>
+        <h2>Thank you</h2>
+        <p>Your message has been sent. I&rsquo;ll be in touch shortly.</p>
+        <button type="button" class="btn btn-primary" data-contact-close>Close</button>
+      </div>
+    </div>
+  </div>
 
   <script src="js/site.js"></script>
 </body>

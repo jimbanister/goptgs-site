@@ -35,3 +35,59 @@
     });
   }
 })();
+
+/* Contact modal (Netlify Forms). Without JS the CTA falls back to mailto
+   and the form still posts natively to /thanks.html. */
+(function () {
+  var modal = document.getElementById("contact-modal");
+  if (!modal) return;
+  var form = modal.querySelector("form");
+  var wrap = modal.querySelector("[data-contact-formwrap]");
+  var done = modal.querySelector("[data-contact-done]");
+  var err = modal.querySelector("[data-contact-error]");
+  var lastFocus;
+
+  function open(e) {
+    if (e) e.preventDefault();
+    lastFocus = document.activeElement;
+    modal.hidden = false;
+    document.body.classList.add("cmodal-open");
+    var first = form.querySelector('input[name="name"]');
+    if (first && !wrap.hidden) first.focus();
+  }
+  function close() {
+    modal.hidden = true;
+    document.body.classList.remove("cmodal-open");
+    if (!done.hidden) { form.reset(); done.hidden = true; wrap.hidden = false; }
+    if (lastFocus) lastFocus.focus();
+  }
+  document.querySelectorAll("[data-contact-open]").forEach(function (a) { a.addEventListener("click", open); });
+  modal.querySelectorAll("[data-contact-close]").forEach(function (b) { b.addEventListener("click", close); });
+  document.addEventListener("keydown", function (e) { if (e.key === "Escape" && !modal.hidden) close(); });
+  // Overlay clicks deliberately do NOT close the form (avoids losing typing).
+
+  function showError(msg) { err.textContent = msg; err.hidden = false; }
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    err.hidden = true;
+    var bad = [];
+    form.querySelectorAll("[required]").forEach(function (f) {
+      var ok = f.value.trim() !== "" && (f.type !== "email" || /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(f.value.trim()));
+      f.classList.toggle("invalid", !ok);
+      if (!ok) bad.push(f);
+    });
+    if (bad.length) { showError("Please fill in your name, a valid email address, and a short description."); bad[0].focus(); return; }
+    var btn = form.querySelector('button[type="submit"]');
+    btn.disabled = true; btn.textContent = "Sending…";
+    fetch("/", {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: new URLSearchParams(new FormData(form)).toString()
+    }).then(function (r) {
+      if (!r.ok) throw new Error(r.status);
+      wrap.hidden = true; done.hidden = false;
+    }).catch(function () {
+      showError("Sorry, that didn't send. Please try again, or email jim@goptgs.com directly.");
+    }).then(function () { btn.disabled = false; btn.textContent = "Send"; });
+  });
+})();
