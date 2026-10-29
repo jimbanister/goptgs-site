@@ -38,15 +38,22 @@
       frame.onload = function () {
         var doc = frame.contentDocument;
         var st = doc.createElement("style");
-        st.textContent = "[data-editable]{outline:2px dashed #f2c94c;outline-offset:4px}[data-editable]:focus{outline:2px solid #f2994a}";
+        st.textContent = "[data-pe]{outline:2px dashed #f2c94c;outline-offset:3px;cursor:text}[data-pe]:focus{outline:2px solid #f2994a}";
         doc.head.appendChild(st);
-        doc.querySelectorAll('[data-editable="source"]').forEach(function (el) {
+        markLeaves(doc);
+        state.sig = signature(doc);
+        state.hadRotate = !!doc.querySelector(".s-rotate .s-word");
+        doc.querySelectorAll("[data-pe]").forEach(function (el) {
           el.setAttribute("contenteditable", "true");
           el.addEventListener("input", function () { setDirty(true); });
+          el.addEventListener("keydown", function (e) {
+            if (e.key === "Enter") { e.preventDefault(); doc.execCommand("insertLineBreak"); }
+          });
           el.addEventListener("paste", function (e) {
             e.preventDefault();
             doc.execCommand("insertText", false, (e.clipboardData || window.clipboardData).getData("text/plain"));
           });
+          el.addEventListener("drop", function (e) { e.preventDefault(); });
         });
         doc.addEventListener("click", function (e) { if (e.target.closest("a")) e.preventDefault(); }, true);
         setDirty(false);
@@ -64,13 +71,61 @@
     return src.slice(0, gt + 1) + inner + src.slice(close);
   }
 
+  /* Only plain text blocks are editable. Labels, buttons, contact links and
+     layout wrappers are locked. */
+  var LEAF_TAGS = /^(H[1-6]|P|LI|SPAN|STRONG|BLOCKQUOTE)$/;
+  var INLINE_OK = /^(STRONG|B|EM|I|BR|SPAN)$/;
+  var LOCKED = ".lane, .tag, .step, a, button, .btn-row, .cta-meta, .contact-line, .link-row, .plank-icon, [data-email-text], [data-phone-text], .s-rotate";
+  function isLeaf(el) {
+    if (!LEAF_TAGS.test(el.tagName) || el.matches(LOCKED)) return false;
+    if (el.querySelector(LOCKED.replace(/, \.s-rotate/, ""))) return false;
+    var kids = el.querySelectorAll("*");
+    for (var i = 0; i < kids.length; i++) if (!INLINE_OK.test(kids[i].tagName)) return false;
+    return true;
+  }
+  function markLeaves(doc) {
+    function walk(el) {
+      if (el.matches && el.matches(LOCKED)) return;
+      if (isLeaf(el)) { el.setAttribute("data-pe", ""); return; }
+      Array.prototype.forEach.call(el.children, walk);
+    }
+    doc.querySelectorAll('[data-editable="source"]').forEach(function (sec) { Array.prototype.forEach.call(sec.children, walk); });
+  }
+  function clean(node) {
+    node.querySelectorAll("[contenteditable]").forEach(function (n) { n.removeAttribute("contenteditable"); });
+    node.querySelectorAll("[data-pe]").forEach(function (n) { n.removeAttribute("data-pe"); });
+    return node;
+  }
+  /* Structure fingerprint: every section with editable text blanked out.
+     If anything outside the editable text changes, this changes. */
+  function signature(doc) {
+    var out = [];
+    doc.querySelectorAll('[data-editable="source"]').forEach(function (sec) {
+      var c = sec.cloneNode(true);
+      c.querySelectorAll("[data-pe]").forEach(function (n) { n.innerHTML = ""; });
+      out.push(sec.getAttribute("data-key") + ":" + clean(c).outerHTML);
+    });
+    return out.join("\n");
+  }
+  function validate(doc) {
+    if (signature(doc) !== state.sig) throw new Error("page layout or a label changed (not just text). Nothing was saved — reload the page and try again.");
+    doc.querySelectorAll("[data-pe]").forEach(function (el) {
+      el.querySelectorAll("*").forEach(function (k) {
+        if (!INLINE_OK.test(k.tagName)) throw new Error("unexpected formatting inside a text box. Nothing was saved — reload and try again.");
+      });
+    });
+    var rot = doc.querySelector(".s-rotate .s-word");
+    if (state.hadRotate && !rot) throw new Error("the rotating headline word was removed. Nothing was saved — reload and try again.");
+    if (rot) rot.textContent = "solutions";
+  }
+
   function save() {
     var doc = $("frame").contentDocument, text = state.text;
     $("save").disabled = true;
     try {
+      validate(doc);
       doc.querySelectorAll('[data-editable="source"]').forEach(function (el) {
-        var clone = el.cloneNode(true);
-        clone.querySelectorAll("[contenteditable]").forEach(function (n) { n.removeAttribute("contenteditable"); });
+        var clone = clean(el.cloneNode(true));
         text = splice(text, el.getAttribute("data-key"), clone.innerHTML);
       });
     } catch (e) { status("Not saved: " + e.message); $("save").disabled = false; return; }
