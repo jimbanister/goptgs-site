@@ -1,0 +1,12 @@
+# CloudCannon: plain static site, no build step.
+# Pages are edited visually (yellow editable boxes) in the Visual Editor.
+collections_config:
+  pages:
+    path: ''
+    glob:
+      - index.html
+      - about.html
+    name: Pages
+    _enabled_editors:
+      - visual
+      - content

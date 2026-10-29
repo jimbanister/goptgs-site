@@ -19,3 +19,13 @@
   from = "/about"
   to = "/about.html"
   status = 200
+
+[[headers]]
+  for = "/js/*"
+  [headers.values]
+    Cache-Control = "no-cache"
+
+[[headers]]
+  for = "/*.html"
+  [headers.values]
+    Cache-Control = "no-cache"
