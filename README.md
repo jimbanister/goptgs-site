@@ -10,3 +10,4 @@ inside any yellow box, type, then **Save**. CloudCannon commits to GitHub `main`
 and Netlify republishes.
 
 The old `?edit=1` browser editor has been removed.
+
