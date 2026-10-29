@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024" fill="none">
+  <!-- PTGS Tournaments Value Lane — working draft, 110px ball -->
+  <g id="target">
+    <circle cx="511" cy="511" r="397.5" stroke="#0F0F0F" stroke-width="22" fill="none"/>
+    <circle cx="511" cy="511" r="266" stroke="#0F0F0F" stroke-width="22" fill="none"/>
+    <circle cx="511" cy="511" r="149.5" stroke="#0F0F0F" stroke-width="22" fill="none"/>
+    <circle cx="511" cy="511" r="41" fill="#0F0F0F"/>
+  </g>
+  <g id="north-ball">
+    <circle cx="646" cy="424" r="55" fill="#C41E3A"/>
+    <circle cx="626.2" cy="400.9" r="12.5" fill="#FFBEBE"/>
+  </g>
+</svg>

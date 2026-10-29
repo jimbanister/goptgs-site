@@ -1,0 +1,15 @@
+.DS_Store
+Thumbs.db
+*.log
+.idea/
+.vscode/
+*.swp
+*~
+.preview/
+preview/
+node_modules/
+.netlify/
+dist/
+.env
+.env.*
+!.env.example

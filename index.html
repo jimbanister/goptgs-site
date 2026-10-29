@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>PTGS — Player &amp; Tournament Golf Solutions</title>
+  <meta name="description" content="PTGS LLC — player development, specialty tournaments, media production, and product management for golf organisations." />
+  <!-- Draft branding — not locked -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css?v=24" />
+</head>
+<body data-page="home">
+  <header class="site-header">
+    <div class="container nav">
+      <a class="logo" href="index.html" aria-label="PTGS home">
+        <img src="assets/ptgs-wordmark-nav.png?v=10" alt="PTGS — Player &amp; Tournament Golf Solutions" />
+      </a>
+      <button class="menu-btn" type="button" aria-expanded="false" aria-controls="nav-menu" id="menu-btn">Menu</button>
+      <ul class="nav-links" id="nav-menu">
+        <li><a href="#solutions">Solutions</a></li>
+        <li><a href="#approach">Approach</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <a class="btn btn-primary nav-cta" data-mailto href="#">Start a conversation</a>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <p class="eyebrow" data-copy="eyebrow"></p>
+          <h1 data-copy="headline"></h1>
+          <p class="hero-lead" data-copy="lead"></p>
+          <div class="btn-row">
+            <a class="btn btn-primary" data-mailto href="#">Start a conversation</a>
+            <a class="btn btn-secondary" data-tel href="#"><span data-phone-text></span></a>
+          </div>
+        </div>
+        <aside class="hero-aside" aria-label="How to reach PTGS">
+          <h2 data-copy="aside-title"></h2>
+          <p data-copy="aside-body"></p>
+          <p class="contact-line"><a data-mailto data-email-text href="#"></a></p>
+          <p class="contact-line"><a data-tel data-phone-text href="#"></a></p>
+        </aside>
+      </div>
+    </section>
+
+    <section class="planks" id="solutions">
+      <div class="container">
+        <div class="section-head">
+          <h2 data-copy="lanes-heading"></h2>
+          <p data-copy="lanes-intro"></p>
+        </div>
+        <div class="plank-grid" data-lanes></div>
+      </div>
+    </section>
+
+    <section id="approach">
+      <div class="container">
+        <div class="section-head">
+          <h2 data-copy="approach-heading"></h2>
+          <p data-copy="approach-intro"></p>
+        </div>
+        <ol class="approach-list" data-approach></ol>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="container">
+        <div class="cta-band">
+          <h2 data-copy="contact-heading"></h2>
+          <p data-copy="contact-body"></p>
+          <div class="btn-row">
+            <a class="btn btn-primary" data-mailto href="#">Email <span data-email-text></span></a>
+            <a class="btn btn-secondary btn-on-dark" data-tel href="#">Call <span data-phone-text></span></a>
+          </div>
+          <p class="cta-meta">PTGS LLC · <a data-mailto data-email-text href="#"></a> · <a data-tel data-phone-text href="#"></a></p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-row">
+      <span>© <span id="year"></span> PTGS LLC · Player &amp; Tournament Golf Solutions</span>
+      <span>
+        <a data-mailto data-email-text href="#"></a>
+        ·
+        <a data-tel data-phone-text href="#"></a>
+      </span>
+    </div>
+  </footer>
+
+  <script src="js/content.js?v=24"></script>
+  <script src="js/apply-copy.js?v=24"></script>
+  <script src="js/edit-mode.js?v=24"></script>
+</body>
+</html>

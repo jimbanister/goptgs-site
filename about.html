@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>About — PTGS LLC</title>
+  <meta name="description" content="Jim Banister — PGA Associate path and PTGS engagement types." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css?v=24" />
+</head>
+<body data-page="about">
+  <header class="site-header">
+    <div class="container nav">
+      <a class="logo" href="index.html" aria-label="PTGS home">
+        <img src="assets/ptgs-wordmark-nav.png?v=10" alt="PTGS — Player &amp; Tournament Golf Solutions" />
+      </a>
+      <button class="menu-btn" type="button" aria-expanded="false" aria-controls="nav-menu" id="menu-btn">Menu</button>
+      <ul class="nav-links" id="nav-menu">
+        <li><a href="index.html#solutions">Solutions</a></li>
+        <li><a href="about.html" aria-current="page">About</a></li>
+        <li><a href="index.html#contact">Contact</a></li>
+      </ul>
+      <a class="btn btn-primary nav-cta" data-mailto href="#">Start a conversation</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="page-hero">
+      <div class="container">
+        <p class="eyebrow" data-copy="eyebrow"></p>
+        <h1 data-copy="headline"></h1>
+        <p class="lead" data-copy="lead"></p>
+      </div>
+    </section>
+
+    <section>
+      <div class="container prose" data-about-prose></div>
+    </section>
+
+    <section class="about-band">
+      <div class="container">
+        <div class="section-head">
+          <h2 data-copy="dual-heading"></h2>
+          <p data-copy="dual-intro"></p>
+        </div>
+        <div class="dual-grid">
+          <article class="dual-card">
+            <span class="tag">Learn-forward</span>
+            <h3 data-copy="learn-title"></h3>
+            <p data-copy="learn-body"></p>
+          </article>
+          <article class="dual-card">
+            <span class="tag">Experience-led</span>
+            <h3 data-copy="exp-title"></h3>
+            <p data-copy="exp-body"></p>
+          </article>
+        </div>
+        <div class="link-row">
+          <a class="ext" data-linkedin href="#" target="_blank" rel="noopener noreferrer">LinkedIn — linkedin.com/in/jimbanister</a>
+          <a class="btn btn-primary" data-mailto href="#">Start a conversation</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="container">
+        <div class="cta-band">
+          <h2 data-copy="contact-heading"></h2>
+          <p data-copy="contact-body"></p>
+          <div class="btn-row">
+            <a class="btn btn-primary" data-mailto href="#">Email <span data-email-text></span></a>
+            <a class="btn btn-secondary btn-on-dark" data-tel href="#">Call <span data-phone-text></span></a>
+          </div>
+          <p class="cta-meta">PTGS LLC · <a data-mailto data-email-text href="#"></a> · <a data-tel data-phone-text href="#"></a></p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-row">
+      <span>© <span id="year"></span> PTGS LLC · Player &amp; Tournament Golf Solutions</span>
+      <span>
+        <a data-mailto data-email-text href="#"></a>
+        ·
+        <a data-tel data-phone-text href="#"></a>
+      </span>
+    </div>
+  </footer>
+
+  <script src="js/content.js?v=24"></script>
+  <script src="js/apply-copy.js?v=24"></script>
+  <script src="js/edit-mode.js?v=24"></script>
+</body>
+</html>
