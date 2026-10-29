@@ -29,3 +29,8 @@
   for = "/*.html"
   [headers.values]
     Cache-Control = "no-cache"
+
+[[headers]]
+  for = "/edit.html"
+  [headers.values]
+    X-Robots-Tag = "noindex"

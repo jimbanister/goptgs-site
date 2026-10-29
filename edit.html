@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="robots" content="noindex,nofollow" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>PTGS editor</title>
+<style>
+  body{margin:0;font:15px/1.4 system-ui,sans-serif;background:#eee}
+  #bar{position:sticky;top:0;z-index:2;display:flex;gap:10px;align-items:center;flex-wrap:wrap;padding:10px 14px;background:#12352a;color:#fff}
+  #bar button,#bar select{font:inherit;padding:6px 12px;border-radius:6px;border:0;cursor:pointer}
+  #save{background:#f2c94c;font-weight:600}
+  #save:disabled{opacity:.5;cursor:default}
+  #status{flex:1;min-width:200px}
+  #login{max-width:520px;margin:60px auto;background:#fff;padding:24px;border-radius:10px}
+  #login input{width:100%;padding:8px;font:inherit;box-sizing:border-box;margin:8px 0}
+  iframe{display:block;width:100%;height:calc(100vh - 56px);border:0;background:#fff}
+</style>
+</head>
+<body>
+<div id="login" hidden>
+  <h2>PTGS editor — connect GitHub</h2>
+  <p>Paste your GitHub access token (one-time; it stays in this browser only).</p>
+  <input id="token" type="password" placeholder="github_pat_…" autocomplete="off" />
+  <button id="connect">Connect</button>
+  <p id="loginmsg"></p>
+</div>
+<div id="app" hidden>
+  <div id="bar">
+    <select id="page"><option value="index.html">Home</option><option value="about.html">About</option></select>
+    <button id="save" disabled>Save &amp; publish</button>
+    <span id="status">Loading…</span>
+    <a id="view" href="/" target="_blank" style="color:#fff">View live site</a>
+    <button id="logout">Disconnect</button>
+  </div>
+  <iframe id="frame" title="Page being edited"></iframe>
+</div>
+<script src="js/editor.js"></script>
+</body>
+</html>
