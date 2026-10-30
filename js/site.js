@@ -118,14 +118,21 @@
   document.addEventListener("keydown", function (e) { if (e.key === "Escape" && box && !box.hidden) close(); });
 })();
 
-/* Pull the lanes photo up so its top lines up with the hero buttons (wide screens only) */
+/* Lanes photo (wide screens): top aligned with hero buttons, bottom with the
+   lanes intro text, centred in the column, so it never pushes the cards down. */
 (function () {
-  var ph = document.querySelector(".lanes-photo"), btns = document.querySelector(".hero-btns");
-  if (!ph || !btns) return;
+  var ph = document.querySelector(".lanes-photo"), btns = document.querySelector(".hero-btns"),
+      intro = document.querySelector('[data-copy="lanes-intro"]');
+  if (!ph || !btns || !intro) return;
+  var img = ph.querySelector("img"), cap = ph.querySelector("figcaption");
   function place() {
-    ph.style.marginTop = "0px";
+    ph.style.marginTop = ""; ph.style.width = "";
     if (window.innerWidth < 720) return;
+    var colW = ph.parentNode.getBoundingClientRect().width; // reset first
     var d = btns.getBoundingClientRect().top - ph.getBoundingClientRect().top;
+    var h = intro.getBoundingClientRect().bottom - btns.getBoundingClientRect().top - (cap ? cap.offsetHeight + 6 : 0);
+    var w = Math.max(140, h * 709 / 996);
+    ph.style.width = w + "px";
     ph.style.marginTop = Math.min(0, d) + "px";
   }
   window.addEventListener("load", place); window.addEventListener("resize", place); place();
