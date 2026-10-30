@@ -536,14 +536,13 @@ body.cmodal-open{overflow:hidden}
 /* In-page photos + lightbox */
 .lanes-top { display: grid; gap: 1.5rem; margin-bottom: 2rem; align-items: start; }
 .lanes-top .section-head { margin-bottom: 0; }
-.photo { margin: 0 auto; max-width: 260px; width: 100%; }
+.photo { margin: 0; width: 100%; }
 .photo-link { display: block; border-radius: 1rem; overflow: hidden; cursor: zoom-in; box-shadow: 0 6px 20px rgba(0,0,0,0.12); }
-.photo img { display: block; width: 100%; height: auto; aspect-ratio: 3 / 4; object-fit: cover; transition: transform .25s; }
+.photo img { display: block; width: 100%; height: auto; aspect-ratio: 709 / 996; object-fit: cover; transition: transform .25s; }
 .photo-link:hover img { transform: scale(1.03); }
-.photo figcaption { margin-top: 0.6rem; font-size: 0.85rem; line-height: 1.35; color: var(--muted); text-align: center; }
+.photo figcaption { margin-top: 0.4rem; font-size: 0.75rem; line-height: 1.25; color: var(--muted); text-align: center; }
 @media (min-width: 720px) {
   .lanes-top { grid-template-columns: 1.4fr 0.9fr; gap: 2.5rem; }
-  .lanes-top .photo { margin: -1rem 0 0 auto; }
 }
 .lightbox { position: fixed; inset: 0; z-index: 1000; background: rgba(0,0,0,0.88); display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 1.5rem; cursor: zoom-out; }
 .lightbox[hidden] { display: none; }
