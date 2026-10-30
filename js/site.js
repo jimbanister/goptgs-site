@@ -117,3 +117,16 @@
   });
   document.addEventListener("keydown", function (e) { if (e.key === "Escape" && box && !box.hidden) close(); });
 })();
+
+/* Pull the lanes photo up so its top lines up with the hero buttons (wide screens only) */
+(function () {
+  var ph = document.querySelector(".lanes-photo"), btns = document.querySelector(".hero-btns");
+  if (!ph || !btns) return;
+  function place() {
+    ph.style.marginTop = "0px";
+    if (window.innerWidth < 720) return;
+    var d = btns.getBoundingClientRect().top - ph.getBoundingClientRect().top;
+    ph.style.marginTop = Math.min(0, d) + "px";
+  }
+  window.addEventListener("load", place); window.addEventListener("resize", place); place();
+})();

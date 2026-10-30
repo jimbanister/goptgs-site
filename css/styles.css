@@ -556,10 +556,11 @@ body.cmodal-open{overflow:hidden}
 @media (max-width: 480px) { .photo-float { width: 42%; margin-left: 1rem; } }
 
 /* Hero: buttons + putt photo share row 2 so their tops align */
-.hero-grid { grid-template-areas: "main" "btns" "aside" "photo"; row-gap: 1.5rem; }
-.hero-main { grid-area: main; } .hero-btns { grid-area: btns; } .hero-aside { grid-area: aside; } .hero-photo { grid-area: photo; }
+.hero-grid { grid-template-areas: "main" "btns" "aside"; row-gap: 1.5rem; }
+.hero-main { grid-area: main; } .hero-btns { grid-area: btns; } .hero-aside { grid-area: aside; } 
 .hero-main .hero-lead { margin-bottom: 0; }
 .hero-btns { align-self: start; }
 @media (min-width: 720px) {
-  .hero-grid { grid-template-areas: "main aside" "btns photo"; }
+  .hero-grid { grid-template-areas: "main aside" "btns ."; }
 }
+.lanes-photo { position: relative; z-index: 2; }
