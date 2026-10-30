@@ -73,7 +73,7 @@
 
   /* Only plain text blocks are editable. Labels, buttons, contact links and
      layout wrappers are locked. */
-  var LEAF_TAGS = /^(H[1-6]|P|LI|SPAN|STRONG|BLOCKQUOTE)$/;
+  var LEAF_TAGS = /^(H[1-6]|P|LI|SPAN|STRONG|BLOCKQUOTE|FIGCAPTION)$/;
   var INLINE_OK = /^(STRONG|B|EM|I|BR|SPAN)$/;
   var LOCKED = ".lane, .tag, .step, a, button, .btn-row, .cta-meta, .contact-line, .link-row, .plank-icon, [data-email-text], [data-phone-text], .s-rotate";
   function isLeaf(el) {

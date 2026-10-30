@@ -91,3 +91,29 @@
     }).then(function () { btn.disabled = false; btn.textContent = "Send"; });
   });
 })();
+
+/* In-page photo lightbox */
+(function () {
+  if (location.pathname.indexOf("edit") >= 0) return;
+  var box, img, cap, last;
+  function build() {
+    box = document.createElement("div");
+    box.className = "lightbox"; box.hidden = true;
+    box.setAttribute("role", "dialog"); box.setAttribute("aria-modal", "true"); box.setAttribute("aria-label", "Enlarged photo");
+    box.innerHTML = '<button type="button" aria-label="Close">&times;</button><img alt=""><p></p>';
+    img = box.querySelector("img"); cap = box.querySelector("p");
+    box.addEventListener("click", close);
+    document.body.appendChild(box);
+  }
+  function close() { box.hidden = true; document.body.style.overflow = ""; if (last) last.focus(); }
+  document.addEventListener("click", function (e) {
+    var a = e.target.closest && e.target.closest("a[data-lightbox]");
+    if (!a) return;
+    e.preventDefault(); if (!box) build(); last = a;
+    var t = a.querySelector("img"), fc = a.closest("figure") && a.closest("figure").querySelector("figcaption");
+    img.src = a.getAttribute("href"); img.alt = t ? t.alt : "";
+    cap.textContent = fc ? fc.textContent : "";
+    box.hidden = false; document.body.style.overflow = "hidden"; box.querySelector("button").focus();
+  });
+  document.addEventListener("keydown", function (e) { if (e.key === "Escape" && box && !box.hidden) close(); });
+})();
