@@ -566,3 +566,7 @@ body.cmodal-open{overflow:hidden}
 .lanes-photo { position: relative; z-index: 2; }
 .lanes-photo { justify-self: center; max-width: 100%; }
 .photo figcaption { font-weight: 600; }
+
+/* Tighter gap: value lanes -> How Experience-Led works */
+.planks { padding-bottom: 1.5rem; }
+#approach { padding-top: 1.8rem; }
