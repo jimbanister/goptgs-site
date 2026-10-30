@@ -549,3 +549,8 @@ body.cmodal-open{overflow:hidden}
 .lightbox img { max-width: 100%; max-height: calc(100vh - 6rem); border-radius: 0.75rem; }
 .lightbox p { color: #fff; margin: 0.9rem 0 0; text-align: center; font-size: 0.95rem; }
 .lightbox button { position: absolute; top: 1rem; right: 1rem; background: none; border: 0; color: #fff; font-size: 2rem; line-height: 1; cursor: pointer; }
+
+.photo-float { float: right; width: 38%; max-width: 220px; margin: 0.3rem 0 1rem 1.5rem; }
+.photo-float img { aspect-ratio: 440 / 573; }
+.prose::after { content: ""; display: block; clear: both; }
+@media (max-width: 480px) { .photo-float { width: 42%; margin-left: 1rem; } }
